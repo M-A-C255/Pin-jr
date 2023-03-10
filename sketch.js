@@ -149,7 +149,7 @@ function keyPressed() {
                 //if statement to make sure no double jump occurs
                 if (isFalling == false || onPlatform){
 
-                    gameChar_y -= 120;
+                    gameChar_y -= 140;
 
                     jumpMusic();
 
@@ -553,15 +553,18 @@ function gameCharMovements() {
 
     else if (isRight == true) 
     {
-        if (gameChar_x < width*0.51) {
+        if(gameChar_world_x < 3050) {
+            
+            if (gameChar_x < width*0.51) {
 
             gameChar_x += 5;
         }
 
-        else {
+            else {
 
-            scrollPos-=5;
-        }   
+                scrollPos-=5;
+            }   
+        }  
     }
 
     //Create a gravity effect
@@ -610,10 +613,19 @@ function checkFlagpole() {
     
     //check if game character goes over the flag pole or not
     if (flagpole.isReached == false) {
-        
+
         if (gameChar_world_x > flagpole.x_pos) {
-            
+
             flagpole.isReached = true;
+        }
+        
+    }
+    
+    else {
+        
+        if (gameChar_world_x < flagpole.x_pos) {
+            
+            flagpole.isReached = false;
         }
     }
 }
